@@ -11,24 +11,29 @@ def home(request):
     if request.method == 'POST':
         # print(request.POST)
         questions=Task.objects.all()
-        score=0
-        wrong=0
-        correct=0
-        total=0
+        score = 0
+        wrong = 0
+        attended = 0
+        correct = 0
+        total = 0
         for q in questions:
             total+=1
             # print(request.POST.get(q.Question))
             # print(q.Correct_ans)
-            if q.Correct_ans ==  request.POST.get(q.Question):
-                score+=10
-                correct+=1
-            else:
-                wrong+=1
+            if request.POST.get(q.Question):
+                attended+=1
+                if q.Correct_ans ==  request.POST.get(q.Question):
+                    score+=10
+                    correct+=1
+                else:
+                    wrong+=1
+            
         context = {
             'score':score,
             'time': request.POST.get('timer'),
             'correct':correct,
             'wrong':wrong,
+            'attended':attended,
             'total':total
         }
         return render(request,'result.html',context)
