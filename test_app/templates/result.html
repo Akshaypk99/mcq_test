@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+ 
+<div class="container ">
+        
+    <div class="card-columns" style="padding: 10px; margin: 20px;">
+        <div class="card" style="width: 50rem; border:2px black solid">
+            <div class="card-body">
+                <h5 class="card-title">Score: {{score}}</h5>
+                <p class="card-text">Time Taken: {{time}} seconds</p>
+                <p class="card-text">Correct answers: {{correct}}</p>
+                <p class="card-text">Incorrect answers: {{wrong}}</p>
+                <p class="card-text">Total questions: {{total}}</p>
+                <h5>Thank you</h5>
+            </div>
+        </div>
+    </div>
+    <div class="btn btn-primary text-light">
+        <a class="text-white text-decoration-none" href="{% url 'logout' %}">LogOut</a>    
+    </div>
+</div>
+ 
+{% endblock %}
